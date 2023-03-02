@@ -2,7 +2,10 @@ var serviceWorkerRegistration = null;
 
 var app = new App();
 
-
+window.addEventListener('click', e => {
+console.log(window.deferredPrompt, e);
+})
+  
 
 function init()
 {
@@ -44,10 +47,13 @@ function init()
     });
 
     // app install banner -- may not work on every platform
-    window.addEventListener( "beforeinstallprompt" , ( event ) =>
-    {
-        event.userChoice.then( ( choiceResult ) =>
-        {
+    window.addEventListener( "beforeinstallprompt" , ( event ) => {
+    // Prevent the mini-infobar from appearing on mobile.
+        event.preventDefault();
+        console.log('👍', 'beforeinstallprompt', event);
+        // Stash the event so it can be triggered later.
+        window.deferredPrompt = event;
+        event.userChoice.then( ( choiceResult ) => {
             console.log( choiceResult.outcome ); // either "accepted" or "dismissed"
         });
     });
