@@ -12,6 +12,25 @@
 <script src="config.js"></script>
 <script src="src/App.js"></script>
 <script src="src/main.js"></script>
+  
+<script>
+  
+  window.addEventListener('beforeinstallprompt', (event) => {
+    // Prevent the mini-infobar from appearing on mobile.
+    event.preventDefault();
+    console.log('👍', 'beforeinstallprompt', event);
+    // Stash the event so it can be triggered later.
+    window.deferredPrompt = event;
+    // Remove the 'hidden' class from the install button container.
+    divInstall.classList.toggle('hidden', false);
+  });
+
+  window.addEventListener('click', e => {
+    console.log(window.deferredPrompt, e);
+  })
+  
+</script>
+  
 </head>
 
 <body onload="init()">
