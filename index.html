@@ -1,22 +1,292 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
 <head>
-<meta charset="UTF-8">
-<title>PWA Template</title>
-<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="icon" type="image/png" href="img/favicon.png">
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
-<script src="config.js"></script>
-<script src="src/App.js"></script>
-<script src="src/main.js"></script>
+
+  <meta charset="utf-8">
   
+  <title>PWA Template</title>
+  	
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="yes" name="mobile-web-app-capable">
+  <meta content="#000" name="theme-color">
+  <meta content="#000" name="msapplication-TileColor">
+  <meta content="#000" name="apple-mobile-web-app-status-bar-style">
+  <meta content="PWA Demo" name="apple-mobile-web-app-title">
+  	
+  <link href="https://henryegloff.com/demos/pwa-template/favicon.ico" rel="icon" type="image/x-icon">
+  <link href="https://henryegloff.com/demos/pwa-template/manifest.json" rel="manifest"> 
+  <link href="https://henryegloff.com/demos/pwa-template/icon-152x152.png" rel="apple-touch-icon">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
+
+  <style>
+  	
+    body {
+      margin: 0;
+      background: #000;
+      text-align: center;    
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 100%;
+      position: absolute;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size:  16px;
+      line-height: 1.5;
+    }
+  		
+    h1 {
+      font-weight: 500;
+      font-size:  1.6em;
+    } 
+
+    h2 {
+      font-weight: 300;
+      font-size:  1.125em;
+      width:  80%;
+      max-width:  400px;
+      margin-bottom: 1.5em;
+    }
+
+    .logo, .logo svg {
+      width: 100px;
+      height:  44px;
+    }
+
+    .symbol, .symbol svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    .symbol {
+      margin-bottom:  1.5em;
+    }
+  	
+    a.button {
+      color:  #fff;
+      text-decoration: none;
+      padding: .75em 1.5em;
+      border:  1px solid #fff;
+      border-radius: 2em;
+      margin-bottom: 1.5em;
+      transition:  transform .3s;
+    }
+
+    a.button:hover {
+      transform: scale(1.125);
+    }
+
+    a.link {
+      color:  #51B96D;
+      text-decoration: none;
+      font-weight: 300;
+      transition:  opacity .3s;
+    }
+
+    a.link:hover {
+      opacity: .4;
+    }
+
+    .st0{
+      fill:#FFFFFF;
+    }
+
+    .st1{
+      fill:#51B96D;
+    }
+
+    h1 {
+  text-align: center;
+}
+
+.toolbar {
+  width: 100%;
+  display: flex;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.instructions {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+output {
+  display: block;
+  color: gray;
+  margin: 32px 16px;
+  text-align: center;
+  border: 1px silver dashed;
+  padding: 16px;
+  border-radius: 16px;  
+}
+
+button {
+  display: block;
+  font-size: 16px;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 0 8px;
+  text-transform: uppercase;
+}
+
+/* Hide Install button until beforeinstallprompt fires */
+#install { 
+  display: none;
+}
+
+  </style>
 </head>
+<body>
 
-<body onload="init()">
-Simple PWA Template
+  <div class="symbol">
+    <svg>
+      <use xlink:href="#tick-symbol"></use>
+    </svg>
+  </div>
+
+  <div class="logo">
+    <svg>
+      <use xlink:href="#pwa-logo"></use>
+    </svg>
+  </div>
+
+  <div class="container">
+    <h1>
+      Installation Prompt Demo
+    </h1>
+    <p class="instructions">
+      Load this PWA in a browser supporting beforeinstallprompt.
+    </p>
+    <section class="toolbar">
+      <button id="install">Install this App</button>
+    </section>
+    <output></output>
+
+  </div>
+
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0; height: 0;" width="0" height="0">
+    <defs>
+      <symbol id="pwa-logo" viewBox="0 0 1000 440">
+        <title>PWA Logo</title>
+        <path class="st0" d="M730.6,333.3l27.6-69.8H838l-37.9-105.9l47.3-119.7L983,397.8H883l-23.2-64.5H730.6z"/>
+        <path class="st1" d="M635.2,398.3L780.3,38.4l-96.2,0L584.8,271L514.2,38.4h-74L364.5,271L311,165l-48.4,149l49.1,84.3h94.7
+        l68.5-208.6l65.3,208.6H635.2z"/>
+        <path class="st0" d="M108.2,274.8h59.3c18,0,33.9-2,48-6l15.3-47.2l42.8-132c-3.3-5.2-7-10.1-11.2-14.7
+        c-22-24.3-54.2-36.5-96.5-36.5h-149v359.9h91.3V274.8z M186.7,121.2c8.6,8.6,12.9,20.2,12.9,34.7c0,14.6-3.8,26.2-11.3,34.8
+        c-8.3,9.5-23.5,14.3-45.7,14.3h-34.3v-96.7h34.5C163.4,108.2,178.1,112.5,186.7,121.2z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0; height: 0;" width="0" height="0">
+    <defs>
+      <symbol id="tick-symbol" viewBox="0 0 1000 1000">
+        <title>Tick Symbol</title>
+        <g>
+          <circle class="st1" cx="501" cy="499" r="500"/>
+        </g>
+        <path class="st0" d="M501,59c59.4,0,117,11.6,171.2,34.6c52.4,22.2,99.4,53.9,139.9,94.3c40.4,40.4,72.2,87.5,94.3,139.9
+          C929.4,382,941,439.6,941,499s-11.6,117-34.6,171.2c-22.2,52.4-53.9,99.4-94.3,139.9c-40.4,40.4-87.5,72.2-139.9,94.3
+          C618,927.4,560.4,939,501,939s-117-11.6-171.2-34.6c-52.4-22.2-99.4-53.9-139.9-94.3c-40.4-40.4-72.2-87.5-94.3-139.9
+          C72.6,616,61,558.4,61,499s11.6-117,34.6-171.2c22.2-52.4,53.9-99.4,94.3-139.9c40.4-40.4,87.5-72.2,139.9-94.3
+          C384,70.6,441.6,59,501,59 M501-1C224.9-1,1,222.9,1,499s223.9,500,500,500s500-223.9,500-500S777.1-1,501-1L501-1z"/>
+        <path class="st0" d="M389.7,666.9L242.9,520.1l-50,49.6l196.7,196.7L812,344.1l-49.6-49.6L389.7,666.9z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+      <div class="container">
+      <h1>
+        Installation Prompt Demo
+      </h1>
+      <p class="instructions">
+        Load this PWA in a browser supporting beforeinstallprompt.
+      </p>
+      <section class="toolbar">
+        <button id="install">Install this App</button>
+      </section>
+      <output></output>
+
+    </div>
+
+  <script>
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+
+    
+window.addEventListener("DOMContentLoaded", async event => {
+  if ('BeforeInstallPromptEvent' in window) {
+    showResult("⏳ BeforeInstallPromptEvent supported but not fired yet");
+  } else {
+    showResult("❌ BeforeInstallPromptEvent NOT supported");    
+  }
+  document.querySelector("#install").addEventListener("click", installApp);
+});
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevents the default mini-infobar or install dialog from appearing on mobile
+  e.preventDefault();
+  // Save the event because you’ll need to trigger it later.
+  deferredPrompt = e;
+  // Show your customized install prompt for your PWA
+  document.querySelector("#install").style.display="block";  
+  showResult("✅ BeforeInstallPromptEvent fired", true);
+  
+});
+
+window.addEventListener('appinstalled', (e) => {
+  showResult("✅ AppInstalled fired", true);
+});
+
+async function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    showResult("🆗 Installation Dialog opened");
+    // Find out whether the user confirmed the installation or not
+    const { outcome } = await deferredPrompt.userChoice;
+    // The deferredPrompt can only be used once.
+    deferredPrompt = null;
+    // Act on the user's choice
+    if (outcome === 'accepted') {
+      showResult('😀 User accepted the install prompt.', true);
+    } else if (outcome === 'dismissed') {
+      showResult('😟 User dismissed the install prompt');
+    }
+    // We hide the install button
+    document.querySelector("#install").style.display="none";
+
+  }
+}
+
+function showResult(text, append=false) {
+  if (append) {
+      document.querySelector("output").innerHTML += "<br>" + text;
+  } else {
+     document.querySelector("output").innerHTML = text;    
+  }
+}
+      
+  </script>
+
+  
 </body>
-
 </html>

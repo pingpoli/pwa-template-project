@@ -1,31 +1,25 @@
+
 {
-"name": "PWA Template",
-"short_name": "PWA Template",
-"scope": "/",
-"start_url": "/",
-"display": "standalone",
-"icons": [
-    {
-    "src": "img/icon_120.png",
-    "sizes": "120x120",
-    "type": "image/png"
-    },
-    {
-    "src": "img/icon_180.png",
-    "sizes": "180x180",
-    "type": "image/png"
-    },
-    {
-    "src": "img/icon_192.png",
-    "sizes": "192x192",
-    "type": "image/png"
-    },
-    {
-    "src": "img/icon_512.png",
-    "sizes": "512x512",
-    "type": "image/png"
-    }
-],
-"background_color": "#ffffff",
-"theme_color": "#ffffff"
+  "name": "PWA Template",
+  "short_name": "PWA Template",
+  "description": "A Basic PWA Template.",
+  "default_locale": "en",
+  "start_url": "./index.html",
+  "scope": "./",
+  "background_color": "#000",
+  "theme_color": "#000",
+  "display": "standalone",
+  "icons": [{
+      "src": "./icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }],
+  "developer": {
+    "name": "Henry Egloff",
+    "url": "https://henryegloff.com"
+  },
+  "installs_allowed_from": [
+    "*"
+  ]
 }
